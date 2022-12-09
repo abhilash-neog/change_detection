@@ -3,10 +3,7 @@ import pytorch_lightning as pl
 from loguru import logger as L
 from torch.utils.data import ConcatDataset, DataLoader
 
-from data.inpainted_coco_dataset import InpatinedCocoDataset  # noqa
-from data.kubric_change import KubricChange  # noqa
-from data.std import StdDataset  # noqa
-from data.synthtext_dataset import SynthTextDataset  # noqa
+from data.levir import Levir
 
 
 class DataModule(pl.LightningDataModule):
@@ -21,15 +18,15 @@ class DataModule(pl.LightningDataModule):
 
     @staticmethod
     def add_data_specific_args(parent_parser):
-        parser = parent_parser.add_argument_group("InpaintedCOCODataModule")
+        parser = parent_parser.add_argument_group("LevirDataModule")
         parser.add_argument("--batch_size", type=int)
         parser.add_argument("--num_dataloader_workers", type=int)
         parser.add_argument("--test_batch_size", type=int)
         return parent_parser
 
     def import_method_specific_functions(self, method):
-        if method == "centernet":
-            from models.centernet_with_coam import dataloader_collate_fn
+        if method == "segmentation":
+            from models.segmentation_with_coam import dataloader_collate_fn
         else:
             raise NotImplementedError(f"Unknown method {method}")
         return dataloader_collate_fn
@@ -59,22 +56,13 @@ class DataModule(pl.LightningDataModule):
     def setup(self, stage=None):
         train_dataset_config = self.dataset_configs["train_dataset"]
         self.train_dataset = eval(train_dataset_config["class"])(**train_dataset_config["args"])
+
         val_dataset_config = self.dataset_configs["val_dataset"]
+
         self.val_dataset = eval(val_dataset_config["class"])(**val_dataset_config["args"])
-        test_datasets_configs = self.dataset_configs["test_datasets"]
-        self.test_dataset_names = []
-        self.test_datasets = []
-        for test_dataset_config in test_datasets_configs:
-            if test_dataset_config["class"] == "ConcatDataset":
-                datasets = []
-                for dataset_config in test_dataset_config["datasets"]:
-                    datasets.append(eval(dataset_config["class"])(**dataset_config["args"]))
-                self.test_datasets.append(ConcatDataset(datasets))
-            else:
-                self.test_datasets.append(
-                    eval(test_dataset_config["class"])(**test_dataset_config["args"])
-                )
-            self.test_dataset_names.append(test_dataset_config["name"])
+        test_dataset_configs = self.dataset_configs["test_datasets"]
+
+        self.test_dataset = eval(test_dataset_configs["class"])(**test_dataset_configs["args"])
 
     def train_dataloader(self):
         def collate_fn_wrapper(batch):
@@ -85,7 +73,7 @@ class DataModule(pl.LightningDataModule):
             batch_size=self.batch_size,
             shuffle=True,
             num_workers=self.num_dataloader_workers,
-            collate_fn=collate_fn_wrapper,
+            # collate_fn=collate_fn_wrapper,
         )
 
     def val_dataloader(self):
@@ -96,22 +84,12 @@ class DataModule(pl.LightningDataModule):
             self.val_dataset,
             batch_size=self.batch_size,
             num_workers=self.num_dataloader_workers,
-            collate_fn=collate_fn_wrapper,
+            # collate_fn=collate_fn_wrapper,
         )
 
     def test_dataloader(self):
-        dataloaders = []
-        for test_dataset in self.test_datasets:
-
-            def collate_fn_wrapper(batch):
-                return self.collate_fn(batch, test_dataset)
-
-            dataloaders.append(
-                DataLoader(
-                    test_dataset,
-                    batch_size=self.test_batch_size,
-                    num_workers=self.num_dataloader_workers,
-                    collate_fn=collate_fn_wrapper,
-                )
-            )
-        return dataloaders
+        return DataLoader(
+            self.test_dataset,
+            batch_size=self.batch_size,
+            num_workers=self.num_dataloader_workers
+        )

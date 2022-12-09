@@ -1,0 +1,33 @@
+encoder: resnet18
+attention: coam
+coam_layer_data: [2, [512, 256], [128, 64]]
+lr: 0.0001
+weight_decay: 0.0005
+batch_size: 32
+test_batch_size: 32
+num_dataloader_workers: 1
+datasets:
+  train_dataset:
+    name: levir-train
+    class: Levir
+    args:
+      path_to_dataset: ./data_dir/train
+      split: "train"
+      method: "segmentation"
+      image_size: 128
+  val_dataset:
+    name: levir-val
+    class: Levir
+    args:
+      path_to_dataset: ./data_dir/val
+      split: "val"
+      method: "segmentation"
+      image_size: 128
+  test_datasets:
+      name: levir-test
+      class: Levir
+      args:
+        path_to_dataset: ./data_dir/test
+        split: "test"
+        method: "segmentation"
+        image_size: 128

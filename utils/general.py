@@ -7,6 +7,7 @@ import yaml
 from easydict import EasyDict
 from pycocotools import mask as coco_mask_utils
 
+
 def get_easy_dict_from_yaml_file(path_to_yaml_file):
     """
     Reads a yaml and returns it as an easy dict.

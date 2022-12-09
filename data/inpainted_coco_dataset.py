@@ -33,8 +33,8 @@ class InpatinedCocoDataset(Dataset):
         self.marshal_getitem_data = self.import_method_specific_functions(method)
 
     def import_method_specific_functions(self, method):
-        if method == "centernet":
-            from models.centernet_with_coam import marshal_getitem_data
+        if method == "segmentation":
+            from models.segmentation_with_coam import marshal_getitem_data
         else:
             raise NotImplementedError(f"Unknown method {method}")
         return marshal_getitem_data
