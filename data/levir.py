@@ -7,7 +7,6 @@ from PIL import Image, PngImagePlugin
 from torch.utils.data import Dataset
 from torchvision.transforms.functional import pil_to_tensor
 
-from data.augmentation import AugmentationPipeline
 from utils.general import cache_data_triton
 
 LARGE_ENOUGH_NUMBER = 100
