@@ -2,7 +2,7 @@
 The pixel_level_cd model is based off of the github repository by Ragav Sachdeva (https://github.com/ragavsachdeva/The-Change-You-Want-to-See)
 
 ## How to run the object level change detection model (pixel_level_cd)
-Clone the repo
+1. Clone the repo
 Move into the pixel_level_cd directory
 ``` 
 $cd pixel_level_cd
