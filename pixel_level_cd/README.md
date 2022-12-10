@@ -23,9 +23,9 @@ Create directory "data_dir" and move the dataset into the newly created director
 Create a copy of the labels dir, such that there are now, 2 dir -> label_1 and label_2. This needs to be done for all train, val, test
 
 #### 4. Training
-
+```
 python main.py --method centernet --gpus 2 --config_file configs/detection_resnet50_3x_coam_layers_affine.yml --max_epochs 200 --decoder_attention scse
-
+```
 The codebase is heavily tied in with Pytorch Lightning and Weights and Biases. You may find the following flags helpful:
 
 --no_logging (disables logging to weights and biases)
@@ -36,9 +36,12 @@ The codebase is heavily tied in with Pytorch Lightning and Weights and Biases. Y
 --experiment_name <name> (for weights and biases)
 
 #### 5. Testing
-  
+```
 python main.py --method centernet --gpus 2 --config_file configs/detection_resnet50_3x_coam_layers_affine.yml --decoder_attention scse --test_from_checkpoint <path>
+```
 
 Demo/Inference:
 
+```
 python demo_single_pair.py --load_weights_from <path_to_checkpoint> --config_file configs/detection_resnet50_3x_coam_layers_affine.yml --decoder_attention scse
+```
