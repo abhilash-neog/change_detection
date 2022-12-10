@@ -102,9 +102,9 @@ if __name__ == "__main__":
     callbacks = [get_logging_callback_manager(configs)]
     if not configs.no_logging:
         logger = WandbLogger(
-            project="changedetection",
+            project="changedetectionv2",
             id=configs.wandb_id,
-            save_dir="/home/abhilash/change_detection/logs",
+            save_dir="/home/abhilash/change_detection/logs_v2",
             name=configs.experiment_name,
         )
         callbacks.append(ModelCheckpoint(monitor="val/overall_loss", mode="min", save_last=True))
@@ -130,7 +130,5 @@ if __name__ == "__main__":
             test_checkpoint_path if test_checkpoint_path != "" else None,
             callbacks,
         )
-    predictions = trainer.predict(model, datamodule=datamodule)
-    print(f"Predictions = \n{predictions}")
 
 
