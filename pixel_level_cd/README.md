@@ -20,7 +20,7 @@ $unzip LEVIR-CD-256.zip
 
 Create directory "data_dir" and move the dataset into the newly created directory
 
-Create a copy of the labels dir, such that there are now, 2 dir -> label_1 and label_2. This needs to be done for all train, val, test
+Create a copy of the labels dir, such that there are now 2 directories -> label_1 and label_2. This needs to be done for all train, val, test
 
 #### 4. Training
 
