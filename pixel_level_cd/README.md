@@ -1,6 +1,6 @@
-# Understanding Granularity in Change Detection
-The tiny_model_4_cd model is based off of the github repository by AndreaCodegoni (https://github.com/AndreaCodegoni/Tiny_model_4_CD)
-## How to run the object level change detection model (tiny_model_4_CD)
+
+The pixel_level_cd model is based off of the github repository by Ragav Sachdeva (https://github.com/ragavsachdeva/The-Change-You-Want-to-See)
+## How to run the object level change detection model (pixel_level_cd)
 First cd into the Tiny_model_4_CD directory
 ``` 
 $cd Tiny_model_4_CD
