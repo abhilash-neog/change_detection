@@ -36,9 +36,12 @@ Few more args that can be useful
 --resume_from_checkpoint <path> <br>
 --load_weights_from <path> (initialises the model with these weights) <br>
 
-
+Note: if logging is enabled, update the "save_dir" (where the logs are stored locally) in executor.py
+  
 #### 5. Testing
 ```
 python executor.py --method segmentation --gpus 1 --config_file configs/change_detection_config.yml --decoder_attention scse --test_from_checkpoint <path>
 ```
 -- path (provide the path to a checkpoint)
+
+A sample checkpoint (from the experimentations) can be downloaded from here: 
