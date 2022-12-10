@@ -30,15 +30,15 @@ Update the data paths in the config file ("./configs/change_detection_config.yml
 python executor.py --method segmentation --gpus 1 --config_file ./configs/change_detection_config.yml --max_epochs 100 --decoder_attention scse --wandb_id <wandb_id> --experiment_name <name_of_the_wandb_experiment>
 ```
 
--- wandb_id (weights and biases profile id)
--- name_of_the_wandb_experiment (name of the run to be logged in weights and biases)
+-- wandb_id (weights and biases profile id) <br>
+-- name_of_the_wandb_experiment (name of the run to be logged in weights and biases) <br>
 
 Few more args that can be useful
 
---no_logging (disables logging to weights and biases)
---quick_prototype (runs 1 epoch of train, val and test cycle with 2 batches)
---resume_from_checkpoint <path>
---load_weights_from <path> (initialises the model with these weights)
+--no_logging (disables logging to weights and biases) <br>
+--quick_prototype (runs 1 epoch of train, val and test cycle with 2 batches) <br>
+--resume_from_checkpoint <path> <br>
+--load_weights_from <path> (initialises the model with these weights) <br>
 
 
 #### 5. Testing
