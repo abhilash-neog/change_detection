@@ -76,8 +76,9 @@ class Levir(Dataset):
         """
         pil_image = Image.open(path_to_image).convert("L")
         pil_image = pil_image.resize((self.image_size, self.image_size))
-        pil_image = pil_image.point(lambda x: 0 if x < 255 else 255, "1")
+        pil_image = pil_image.point(lambda x: 255 if x < 255 else 0, "1")
         image_as_tensor = pil_to_tensor(pil_image).float()
+
         return image_as_tensor
 
     def __len__(self):
