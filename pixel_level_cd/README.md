@@ -23,25 +23,26 @@ Create directory "data_dir" and move the dataset into the newly created director
 Create a copy of the labels dir, such that there are now, 2 dir -> label_1 and label_2. This needs to be done for all train, val, test
 
 #### 4. Training
+
+Update the data paths in the config file ("./configs/change_detection_config.yml")
+
 ```
-python main.py --method centernet --gpus 2 --config_file configs/detection_resnet50_3x_coam_layers_affine.yml --max_epochs 200 --decoder_attention scse
+python executor.py --method segmentation --gpus 1 --config_file ./configs/change_detection_config.yml --max_epochs 100 --decoder_attention scse --wandb_id <wandb_id> --experiment_name <name_of_the_wandb_experiment>
 ```
-The codebase is heavily tied in with Pytorch Lightning and Weights and Biases. You may find the following flags helpful:
+
+-- wandb_id (weights and biases profile id)
+-- name_of_the_wandb_experiment (name of the run to be logged in weights and biases)
+
+Few more args that can be useful
 
 --no_logging (disables logging to weights and biases)
 --quick_prototype (runs 1 epoch of train, val and test cycle with 2 batches)
 --resume_from_checkpoint <path>
 --load_weights_from <path> (initialises the model with these weights)
---wandb_id <id> (for weights and biases)
---experiment_name <name> (for weights and biases)
+
 
 #### 5. Testing
 ```
-python main.py --method centernet --gpus 2 --config_file configs/detection_resnet50_3x_coam_layers_affine.yml --decoder_attention scse --test_from_checkpoint <path>
+python executor.py --method segmentation --gpus 1 --config_file configs/change_detection_config.yml --decoder_attention scse --test_from_checkpoint <path>
 ```
-
-Demo/Inference:
-
-```
-python demo_single_pair.py --load_weights_from <path_to_checkpoint> --config_file configs/detection_resnet50_3x_coam_layers_affine.yml --decoder_attention scse
-```
+-- path (provide the path to a checkpoint)
