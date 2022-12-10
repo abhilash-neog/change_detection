@@ -13,12 +13,14 @@ $cd pixel_level_cd
 $wget https://www.dropbox.com/s/h9jl2ygznsaeg5d/LEVIR-CD-256.zip 
 $unzip LEVIR-CD-256.zip
 ```
-Create directory "data_dir"
-\br
-Move the dataset into "data_dir"
+
+#### Dataset directory
+3. Create directory "data_dir" and move the dataset into the newly created directory
+
+Create a copy of the labels dir, such that there are now, 2 dir -> label_1 and label_2. This needs to be done for all train, val, test
 
 #### Training
-Training can be run 2 ways, first by directly calling the python script with the following commands
+4. Training can be run 2 ways, first by directly calling the python script with the following commands
 ```
 $python3 training.py --datapath LEVIR-CD-256 --log-path log_path
 ```
