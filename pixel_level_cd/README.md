@@ -10,11 +10,7 @@ $cd pixel_level_cd
 ```
 #### 2. Download the LEVIR dataset
 
-Downloading the dataset can be done 2 ways, either directly:
-``` 
-$wget https://www.dropbox.com/s/h9jl2ygznsaeg5d/LEVIR-CD-256.zip 
-$unzip LEVIR-CD-256.zip
-```
+The dataset can be downloaded from here : https://justchenhao.github.io/LEVIR/
 
 #### 3. Dataset directory
 
