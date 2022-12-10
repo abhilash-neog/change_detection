@@ -44,4 +44,4 @@ python executor.py --method segmentation --gpus 1 --config_file configs/change_d
 ```
 -- path (provide the path to a checkpoint)
 
-A sample checkpoint (from the experimentations) can be downloaded from here: 
+A sample checkpoint (from the experimentations) can be downloaded from here: https://drive.google.com/file/d/1FtdGFPgFllxjb7ffdkBy2mZjP4_xeiFe/view?usp=share_link
