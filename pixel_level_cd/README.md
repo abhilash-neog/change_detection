@@ -8,12 +8,13 @@ Move into the pixel_level_cd directory
 $cd pixel_level_cd
 ```
 #### Download the LEVIR dataset
-Downloading the dataset can be done 2 ways, either directly:
+2. Downloading the dataset can be done 2 ways, either directly:
 ``` 
 $wget https://www.dropbox.com/s/h9jl2ygznsaeg5d/LEVIR-CD-256.zip 
 $unzip LEVIR-CD-256.zip
 ```
 Create directory "data_dir"
+\br
 Move the dataset into "data_dir"
 
 #### Training
